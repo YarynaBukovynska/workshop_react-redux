@@ -3,6 +3,8 @@ import {getData} from "../../api";
 import {TODAY} from "../Map/constants";
 
 const Table = () => {
+  // markers should be replaced by using redux store
+  // make sure that data is memoized
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {

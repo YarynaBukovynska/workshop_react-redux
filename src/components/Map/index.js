@@ -8,9 +8,13 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map = () => {
   const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
+
+  // markers should be replaced by using redux store
+  // make sure that data is memoized
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
+    // replace with dispatching action creator to trigger saga
     getData(TODAY()).then(setMarkers);
   }, []);
 
