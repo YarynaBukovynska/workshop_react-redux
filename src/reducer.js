@@ -1,13 +1,23 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import { SET_MARKERS } from './action-types';
 
-const initialState = {};
+const initialState = {
+  markers: [],
+};
 
-const someReducer = (state = initialState, action) => {
-  return state;
+const markers = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_MARKERS:
+      return {
+        markers: action.data,
+      };
+    default:
+      return state;
+  }
 };
 
 const rootReducer = combineReducers({
-  someReducer,
+  markers,
 });
 
 export default rootReducer;

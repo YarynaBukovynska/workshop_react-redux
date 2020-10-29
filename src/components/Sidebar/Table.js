@@ -1,15 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {getData} from "../../api";
-import {TODAY} from "../Map/constants";
+import React from 'react';
+import {useSelector} from "react-redux";
 
 const Table = () => {
-  // markers should be replaced by using redux store
-  // make sure that data is memoized
-  const [markers, setMarkers] = useState([]);
-
-  useEffect(() => {
-    getData(TODAY()).then(setMarkers);
-  }, []);
+  const markers = useSelector(state => state.markers.markers);
   return (
     <table>
       <tbody>

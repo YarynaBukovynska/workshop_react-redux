@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import ReactMapGL from 'react-map-gl';
-import { getData } from '../../api';
-import { INITIAL_VIEWPORT, TODAY, TOKEN } from './constants';
-import MarkerItem from '../MarkerItem';
-import MAP_STYLE from './styles.json';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MAP_STYLE from './styles.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { INITIAL_VIEWPORT, TODAY, TOKEN } from './constants';
+import { loadData } from '../../actions';
+import MarkerItem from '../MarkerItem';
 
 const Map = () => {
   const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
-
-  // markers should be replaced by using redux store
-  // make sure that data is memoized
-  const [markers, setMarkers] = useState([]);
+  const dispatch = useDispatch();
+  const markers = useSelector(state => state.markers.markers);
 
   useEffect(() => {
-    // replace with dispatching action creator to trigger saga
-    getData(TODAY()).then(setMarkers);
-  }, []);
+    dispatch(loadData(TODAY()));
+  }, [dispatch]);
 
   return (
     <ReactMapGL
